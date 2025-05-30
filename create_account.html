@@ -5,37 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear Cuenta - Kairo</title>
     <style>
-        /* CSS general para modo claro/oscuro */
         :root {
-            /* Modo Claro */
-            --light-bg: #FFFFFF; /* Blanco */
-            --light-primary: #000080; /* Azul Marino */
-            --light-secondary: #F5F5DC; /* Beige */
-            --light-text: #000000; /* Negro */
-            --light-button-hover: #000066; /* Azul Marino más oscuro */
-            --light-input-border: #CCCCCC;
-            --light-input-focus-border: #000080;
-            --light-error-text: #FF0000;
-            --light-card-shadow: rgba(0, 0, 0, 0.05);
-            --light-nav-bg: #000080; /* Fondo barra nav - Azul Marino */
-            --light-nav-icon: #FFFFFF; /* Iconos y texto nav - Blanco */
+            --light-bg: #f4f6f8;
+            --light-primary: #1a73e8;
+            --light-secondary: #ffffff;
+            --light-text: #202124;
+            --light-hover: #1558b0;
+            --light-shadow: rgba(0, 0, 0, 0.1);
 
-            /* Modo Oscuro */
-            --dark-bg: #000000; /* Negro */
-            --dark-primary: #00BFFF; /* Azul Relámpago */
-            --dark-secondary: #F5F5DC; /* Beige Claro */
-            --dark-text: #FFFFFF; /* Blanco */
-            --dark-button-hover: #009ACD; /* Azul Relámpago más oscuro */
-            --dark-input-border: #555555;
-            --dark-input-focus-border: #00BFFF;
-            --dark-error-text: #FF6666;
-            --dark-card-shadow: rgba(255, 255, 255, 0.1);
-            --dark-nav-bg: #00BFFF; /* Fondo barra nav - Azul Relámpago */
-            --dark-nav-icon: #000000; /* Iconos y texto nav - Negro */
+            --dark-bg: #121212;
+            --dark-primary: #90caf9;
+            --dark-secondary: #1e1e1e;
+            --dark-text: #e0e0e0;
+            --dark-hover: #5f9ee6;
+            --dark-shadow: rgba(255, 255, 255, 0.05);
         }
 
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
@@ -43,26 +30,31 @@
             align-items: center;
             min-height: 100vh;
             transition: background-color 0.3s, color 0.3s;
-            background-color: var(--light-bg); /* Por defecto modo claro */
+            background-color: var(--light-bg);
             color: var(--light-text);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .container {
-            background-color: var(--light-bg);
+            background-color: var(--light-secondary);
             padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px var(--light-card-shadow);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px var(--light-shadow);
             text-align: center;
-            max-width: 450px;
             width: 90%;
-            transition: background-color 0.3s, box-shadow 0.3s;
+            max-width: 450px;
+            transition: all 0.3s ease;
         }
 
         h1 {
             color: var(--light-primary);
             margin-bottom: 30px;
-            font-size: 2.2em;
-            transition: color 0.3s;
+            font-size: 2em;
         }
 
         .form-group {
@@ -77,55 +69,60 @@
         }
 
         .form-group input {
-            width: calc(100% - 20px);
-            padding: 12px 10px;
-            border: 1px solid var(--light-input-border);
-            border-radius: 8px;
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--light-hover);
+            border-radius: 10px;
             font-size: 1em;
-            background-color: var(--light-bg);
+            background-color: var(--light-secondary);
             color: var(--light-text);
-            transition: border-color 0.3s, background-color 0.3s, color 0.3s;
         }
 
         .form-group input:focus {
-            border-color: var(--light-input-focus-border);
+            border-color: var(--light-primary);
             outline: none;
         }
 
         .error-message {
-            color: var(--light-error-text);
+            color: red;
             font-size: 0.9em;
-            margin-top: 5px;
-            display: block;
         }
 
         button {
             background-color: var(--light-primary);
-            color: var(--light-nav-icon); /* Texto blanco sobre azul marino */
+            color: #fff;
             border: none;
-            padding: 15px 30px;
-            margin-top: 20px;
-            border-radius: 8px;
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 10px;
             font-size: 1.1em;
             cursor: pointer;
             width: 100%;
-            box-sizing: border-box;
-            transition: background-color 0.3s, color 0.3s;
+            transition: background-color 0.3s;
         }
 
         button:hover {
-            background-color: var(--light-button-hover);
+            background-color: var(--light-hover);
         }
 
-        /* Modo Oscuro */
+        .theme-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            transition: transform 0.3s ease;
+        }
+
         body.dark-mode {
             background-color: var(--dark-bg);
             color: var(--dark-text);
         }
 
         body.dark-mode .container {
-            background-color: var(--dark-bg);
-            box-shadow: 0 10px 30px var(--dark-card-shadow);
+            background-color: var(--dark-secondary);
+            box-shadow: 0 10px 30px var(--dark-shadow);
         }
 
         body.dark-mode h1 {
@@ -133,50 +130,22 @@
         }
 
         body.dark-mode .form-group input {
-            background-color: var(--dark-bg);
+            background-color: var(--dark-secondary);
             color: var(--dark-text);
-            border-color: var(--dark-input-border);
-        }
-
-        body.dark-mode .form-group input:focus {
-            border-color: var(--dark-input-focus-border);
-        }
-
-        body.dark-mode .error-message {
-            color: var(--dark-error-text);
+            border-color: var(--dark-hover);
         }
 
         body.dark-mode button {
             background-color: var(--dark-primary);
-            color: var(--dark-nav-icon); /* Texto negro sobre azul relámpago */
         }
 
         body.dark-mode button:hover {
-            background-color: var(--dark-button-hover);
-        }
-
-        .theme-toggle {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: var(--light-secondary);
-            color: var(--light-text);
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.9em;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        body.dark-mode .theme-toggle {
-            background: var(--dark-secondary);
-            color: var(--dark-text);
+            background-color: var(--dark-hover);
         }
     </style>
 </head>
 <body>
-    <button class="theme-toggle" onclick="toggleTheme()">Cambiar Tema</button>
+    <img src="sol.png" id="themeToggle" alt="Tema" class="theme-icon" onclick="toggleTheme()">
 
     <div class="container">
         <h1>Crear Cuenta</h1>
@@ -200,108 +169,30 @@
         </form>
     </div>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
-        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
-        import { getFirestore } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyDVG2lINPrhmVHkSaxHJZGBqoxS30oSHTs",
-            authDomain: "kairo-f0cbb.firebaseapp.com",
-            projectId: "kairo-f0cbb",
-            storageBucket: "kairo-f0cbb.firebasestorage.app",
-            messagingSenderId: "513362025272",
-            appId: "1:513362025272:web:a158340fc21ea598d1ffcd",
-            measurementId: "G-HVDZ4RB09D"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const sunIcon = 'sol.png';
+        const moonIcon = 'luna.png';
 
         function toggleTheme() {
             document.body.classList.toggle('dark-mode');
             if (document.body.classList.contains('dark-mode')) {
+                themeToggle.src = moonIcon;
                 localStorage.setItem('theme', 'dark');
             } else {
+                themeToggle.src = sunIcon;
                 localStorage.setItem('theme', 'light');
             }
         }
 
-        window.onload = function() {
+        window.onload = function () {
             if (localStorage.getItem('theme') === 'dark') {
                 document.body.classList.add('dark-mode');
+                themeToggle.src = moonIcon;
+            } else {
+                themeToggle.src = sunIcon;
             }
-            window.toggleTheme = toggleTheme;
         };
-
-        document.getElementById('createAccountForm').addEventListener('submit', async function(event) {
-            event.preventDefault();
-
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-
-            let isValid = true;
-
-            document.getElementById('emailError').textContent = '';
-            document.getElementById('passwordError').textContent = '';
-            document.getElementById('confirmPasswordError').textContent = '';
-
-            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                document.getElementById('emailError').textContent = 'Por favor, introduce un correo electrónico válido.';
-                isValid = false;
-            }
-
-            if (password.length < 8) {
-                document.getElementById('passwordError').textContent = 'La contraseña debe tener al menos 8 caracteres.';
-                isValid = false;
-            }
-
-            if (password !== confirmPassword) {
-                document.getElementById('confirmPasswordError').textContent = 'Las contraseñas no coinciden.';
-                isValid = false;
-            }
-
-            if (!isValid) {
-                return;
-            }
-
-            try {
-                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-                const user = userCredential.user;
-                console.log('Usuario creado en Firebase Auth:', user.uid);
-
-                sessionStorage.setItem('tempUserUid', user.uid);
-                sessionStorage.setItem('tempUserEmail', user.email);
-
-                alert('Cuenta creada exitosamente. Ahora completa tus datos personales.');
-                window.location.href = 'personal_data.html';
-
-            } catch (error) {
-                console.error('Error al crear la cuenta:', error.code, error.message);
-                let errorMessage = 'Error al crear la cuenta. Por favor, inténtalo de nuevo.';
-
-                switch (error.code) {
-                    case 'auth/email-already-in-use':
-                        errorMessage = 'Este correo electrónico ya está registrado.';
-                        document.getElementById('emailError').textContent = errorMessage;
-                        break;
-                    case 'auth/invalid-email':
-                        errorMessage = 'El formato del correo electrónico es inválido.';
-                        document.getElementById('emailError').textContent = errorMessage;
-                        break;
-                    case 'auth/weak-password':
-                        errorMessage = 'La contraseña es demasiado débil.';
-                        document.getElementById('passwordError').textContent = errorMessage;
-                        break;
-                    default:
-                        errorMessage = `Error: ${error.message}`;
-                        document.getElementById('emailError').textContent = errorMessage;
-                        break;
-                }
-            }
-        });
     </script>
 </body>
 </html>
